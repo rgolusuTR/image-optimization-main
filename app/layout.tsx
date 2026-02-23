@@ -1,13 +1,7 @@
-import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
-
-export const metadata: Metadata = {
-  title: "NextGen Image Optimizer - Privacy-First Image Tools",
-  description: "Resize, compress and optimize images directly in your browser. 100% Client-side, secure, and free.",
-};
 
 export default function RootLayout({
   children,
@@ -16,6 +10,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <title>NextGen Image Optimizer - Privacy-First Image Tools</title>
+        <meta name="description" content="Resize, compress and optimize images directly in your browser. 100% Client-side, secure, and free." />
+      </head>
       <body className={inter.className}>
         <div className="bg-mesh" />
         {children}
