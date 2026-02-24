@@ -1,5 +1,5 @@
-import { compressImage } from '../lib/compression';
-import { WorkerMessage } from '../types/image.types';
+import { compressImage } from '@/lib/compression';
+import { WorkerMessage } from '@/types/image.types';
 
 const ctx: Worker = self as any;
 
