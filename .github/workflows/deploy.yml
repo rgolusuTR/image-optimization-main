@@ -35,15 +35,23 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Build with Next.js
+      - name: Build with Next.js (disable Turbopack for static export)
         run: npm run build
+        env:
+          TURBOPACK: 0
 
       - name: Verify build output
         run: |
           echo "Checking out directory..."
           ls -la out/ || echo "out directory not found!"
-          echo "Creating .nojekyll file..."
-          touch out/.nojekyll
+          if [ -d "out" ]; then
+            echo "Creating .nojekyll file..."
+            touch out/.nojekyll
+            echo "Build output verified successfully!"
+          else
+            echo "ERROR: out directory was not created by the build!"
+            exit 1
+          fi
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
