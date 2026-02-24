@@ -40,14 +40,23 @@ jobs:
 
       - name: Verify build output
         run: |
-          echo "Checking out directory..."
-          ls -la out/ || echo "out directory not found!"
+          echo "=== Checking current directory ==="
+          pwd
+          echo ""
+          echo "=== Listing all files and directories ==="
+          ls -la
+          echo ""
+          echo "=== Checking for out directory ==="
           if [ -d "out" ]; then
+            echo "✓ out directory found!"
+            ls -la out/
             echo "Creating .nojekyll file..."
             touch out/.nojekyll
             echo "Build output verified successfully!"
           else
-            echo "ERROR: out directory was not created by the build!"
+            echo "✗ ERROR: out directory was not created by the build!"
+            echo "Checking for .next directory..."
+            ls -la .next/ || echo ".next directory also not found"
             exit 1
           fi
 
